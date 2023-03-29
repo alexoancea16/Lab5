@@ -1,16 +1,43 @@
 #include "stive.h"
+#include <string.h>
 
 int main()
 {
     Node *p=NULL;
-    char x='a',y='b',ch;
-    push(&p,x);
-    push(&p,y);
-    printf("Elemantele din stiva sunt: ");
-    ch=pop(&p);
-    printf("%c ",ch);
-    ch=pop(&p);
-    printf("%c ",ch);
+    char c,sir[]="3*)(4+(5-3)*5+(3+7)";
+    int poz=0,i,x[20];
+    for(i=0;i<strlen(sir);i++)
+    {
+        if(sir[i]=='(')
+        {
+            push(&p,sir[i]);
+            x[poz]=i;
+            poz++;
+        }
+        else
+            if(sir[i]==')')
+            {
+                if(p!=NULL)
+                {
+                    c=pop(&p);
+                    if(c=='(')
+                        poz--;
+                }
+                else
+                {
+                        x[poz]=i;
+                        poz++;
+                }
+            }
+    }
+    if(poz==0)
+        printf("Totul este corect!");
+    else
+    {
+        printf("Pozitiile proste sunt: ");
+        for(i=0;i<poz;i++)
+            printf("%d ",x[i]);
+    }
     deleteStack(&p);
     return 0;
 }
