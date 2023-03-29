@@ -43,12 +43,22 @@ int main()
     }
     deleteStack(&p);
     q=createQueue();
-    printf("Cate elemente? n=");
+    printf("\nCate elemente? n=");
     scanf("%d",&n);
     printf("Introduceti numerele: ");
     for(i=0;i<n;i++)
     {
         scanf("%d",&y);
+        enQueue(q,y);
+    }
+    for(i=0;i<n;i++)
+    {
+        y=deQueue(q);
+        push(&p,y);
+    }
+    for(i=0;i<n;i++)
+    {
+        y=pop(&p);
         enQueue(q,y);
     }
     for(i=0;i<n;i++)
